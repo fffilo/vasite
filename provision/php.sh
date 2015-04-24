@@ -31,6 +31,7 @@ cat /etc/php5/cli/php.ini | sed -r "s|;?date.timezone =.*|date.timezone = ${TIME
 echo "xdebug.scream=0" | sudo tee -a /etc/php5/mods-available/xdebug.ini >/dev/null
 echo "xdebug.cli_color=1" | sudo tee -a /etc/php5/mods-available/xdebug.ini >/dev/null
 echo "xdebug.show_local_vars=1" | sudo tee -a /etc/php5/mods-available/xdebug.ini >/dev/null
+echo "xdebug.max_nesting_level=300" | sudo tee -a /etc/php5/mods-available/xdebug.ini >/dev/null
 
 if [[ $APACHE_IS_INSTALLED -eq 0 ]]; then
 	### Install php module for apache
@@ -41,6 +42,11 @@ if [[ $APACHE_IS_INSTALLED -eq 0 ]]; then
 
 	### Set timezone
 	cat /etc/php5/apache2/php.ini | sed -r "s|;?date.timezone =.*|date.timezone = ${TIMEZONE}|" | sudo tee /etc/php5/apache2/php.ini >/dev/null
+
+	### Set execution and file upload size
+	cat /etc/php5/apache2/php.ini | sed -r "s|;?upload_max_filesize =.*|upload_max_filesize = 64M|" | sudo tee /etc/php5/apache2/php.ini >/dev/null
+	cat /etc/php5/apache2/php.ini | sed -r "s|;?post_max_size =.*|post_max_size = 64M|" | sudo tee /etc/php5/apache2/php.ini >/dev/null
+	cat /etc/php5/apache2/php.ini | sed -r "s|;?max_execution_time =.*|max_execution_time = 90|" | sudo tee /etc/php5/apache2/php.ini >/dev/null
 
 	### Enable error reporting
 	sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php5/apache2/php.ini
@@ -59,6 +65,11 @@ if [[ $NGINX_IS_INSTALLED -eq 0 ]]; then
 
 	### Set timezone
 	cat /etc/php5/fpm/php.ini | sed -r "s|;?date.timezone =.*|date.timezone = ${TIMEZONE}|" | sudo tee /etc/php5/fpm/php.ini >/dev/null
+
+	### Set execution and file upload size
+	cat /etc/php5/fpm/php.ini | sed -r "s|;?upload_max_filesize =.*|upload_max_filesize = 64M|" | sudo tee /etc/php5/fpm/php.ini >/dev/null
+	cat /etc/php5/fpm/php.ini | sed -r "s|;?post_max_size =.*|post_max_size = 64M|" | sudo tee /etc/php5/fpm/php.ini >/dev/null
+	cat /etc/php5/fpm/php.ini | sed -r "s|;?max_execution_time =.*|max_execution_time = 90|" | sudo tee /etc/php5/fpm/php.ini >/dev/null
 
 	### Enable error reporting
 	sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php5/fpm/php.ini
