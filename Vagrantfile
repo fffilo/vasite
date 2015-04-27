@@ -82,12 +82,13 @@ Vagrant.configure(API_VERSION) do |config|
 	# Other packages, modules, frameworks, tools...
 	config.vm.provision "shell", path: "./provision/phpmyadmin.sh"
 	config.vm.provision "shell", path: "./provision/memcache.sh"
-	config.vm.provision "shell", path: "./provision/redis.sh"
-	config.vm.provision "shell", path: "./provision/laravel.sh"
+	#config.vm.provision "shell", path: "./provision/redis.sh"
 	#config.vm.provision "shell", path: "./provision/imagemagick.sh"
 	#config.vm.provision "shell", path: "./provision/nodejs.sh"
 	#config.vm.provision "shell", path: "./provision/grunt.sh"
 	#config.vm.provision "shell", path: "./provision/phantomjs.sh"
+	#config.vm.provision "shell", path: "./provision/wordpress.sh"
+	#config.vm.provision "shell", path: "./provision/laravel.sh"
 
 	# Your own scripts
 	config.vm.provision "shell", path: "./provision/extras.sh"
