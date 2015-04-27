@@ -20,6 +20,7 @@ cp /www/wp-config-sample.php /www/wp-config.php
 sudo sed -i "s/database_name_here/${ENVIRONMENT}/" /www/wp-config.php
 sudo sed -i "s/username_here/root/" /www/wp-config.php
 sudo sed -i "s/password_here/root/" /www/wp-config.php
+sudo sed -i "s/localhost/`ifconfig eth1 | grep 'inet addr:' | awk '{print $2}' | cut -f2 -d:`/" /www/wp-config.php
 sudo sed -i "0,/put your unique phrase here/s/put your unique phrase here/`< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;`/" /www/wp-config.php
 sudo sed -i "0,/put your unique phrase here/s/put your unique phrase here/`< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;`/" /www/wp-config.php
 sudo sed -i "0,/put your unique phrase here/s/put your unique phrase here/`< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;`/" /www/wp-config.php
