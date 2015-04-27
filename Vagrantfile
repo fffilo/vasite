@@ -63,7 +63,7 @@ Vagrant.configure(API_VERSION) do |config|
 	config.vm.network "private_network", ip: SERVER_NETIP
 
 	# Provisioning with shell (do not edit this)
-	config.vm.provision "shell", path: "./provision/init.sh", args: [ ENVIRONMENT, SERVER_NETIP, SERVER_SWAP, LANGUAGE, LC_ALL, LC_PAPER, LC_ADDRESS, LC_MONETARY, LC_NUMERIC, LC_TELEPHONE, LC_IDENTIFICATION, LC_MEASUREMENT, LC_TIME, LC_NAME, LANG, TIMEZONE ]
+	config.vm.provision "shell", path: "./provision/init.sh", args: [ ENVIRONMENT, SERVER_SWAP, LANGUAGE, LC_ALL, LC_PAPER, LC_ADDRESS, LC_MONETARY, LC_NUMERIC, LC_TELEPHONE, LC_IDENTIFICATION, LC_MEASUREMENT, LC_TIME, LC_NAME, LANG, TIMEZONE ]
 	config.vm.provision "shell", path: "./provision/swap.sh"
 	config.vm.provision "shell", path: "./provision/base.sh"
 
