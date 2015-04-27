@@ -8,4 +8,4 @@ echo "################################"
 sudo apt-get update
 
 ### Install base packages
-sudo apt-get install -y build-essential python-software-properties python-dev python-pip curl git git-core
+sudo apt-get install -y build-essential python-software-properties python-dev python-pip curl unzip git git-core
