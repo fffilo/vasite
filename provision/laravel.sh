@@ -6,7 +6,8 @@ echo "################################"
 
 ### Empty docroot
 sudo rm -rf /www/*
-find /www -type f -print0 | xargs -0 rm
+find /www -type f -print0 | xargs -0 sudo rm >/dev/null 2>&1
+find /www -mindepth 1 -maxdepth 1 -type d -print0 | xargs -0 sudo rm -rf >/dev/null 2>&1
 
 ### Install latest laravel
 sudo composer create-project --prefer-dist laravel/laravel /www/
